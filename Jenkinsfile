@@ -19,13 +19,11 @@
             }
             stage('Run Tests'){
                 steps {
-                    sh 'docker exec -it todo-app bash'
-                    sh 'pytest'
+                    sh 'docker exec todo-app pytest'
                 }
             }
             stage('Clean up Docker') {
                 steps {
-                    sh 'exit'
                     sh 'docker stop todo-app'
                     sh 'docker rm todo-app'
                 }
