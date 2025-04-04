@@ -8,6 +8,7 @@
             }
             stage('Build Docker container and run'){
                 steps{
+                    sh 'docker rm -f todo-app || true'
                     sh 'docker build -t todo-app .'
                     sh 'docker run -d --name todo-app -p 8000:8000 todo-app'
                 }
@@ -19,7 +20,7 @@
             }
             stage('Run Tests'){
                 steps {
-                    sh 'docker exec todo-app pytest'
+                    sh 'docker run --rm todo-app pytest'
                 }
             }
             stage('Clean up Docker') {
