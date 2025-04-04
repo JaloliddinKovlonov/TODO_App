@@ -27,7 +27,17 @@
                     sh 'docker stop todo-app'
                     sh 'docker rm todo-app'
                 }
-
-            }   
+            } 
+            stage('Push to DockerHub') {
+                steps {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh """
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker tag todo-app $DOCKER_USER/todo-app:latest
+                        docker push $DOCKER_USER/todo-app:latest
+                    """
+                    }
+                }
+            }
         }
     }
