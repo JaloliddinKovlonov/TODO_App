@@ -28,6 +28,7 @@
                 steps {
                     sh 'docker stop todo-app'
                     sh 'docker rm todo-app'
+                    sh 'docker ps -a'
                 }
 
             }   
