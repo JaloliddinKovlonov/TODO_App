@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/JaloliddinKovlonov/TODO_App.git'
+                git branch: 'main', url: 'https://github.com/JaloliddinKovlonov/TODO_App.git'
             }
         }
         stage('Install Dependencies'){
