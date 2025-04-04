@@ -8,8 +8,6 @@
             }
             stage('Build Docker container and run'){
                 steps{
-                    sh 'docker stop todo-app'
-                    sh 'docker rm todo-app'
                     sh 'docker build -t todo-app .'
                     sh 'docker run -d --name todo-app -p 8000:8000 todo-app'
                 }
